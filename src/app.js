@@ -9,6 +9,7 @@ const { NODE_ENV } = require('./config');
 const validateBearerToken = require('./validate-bearer-token');
 const noteRouter = require('./notes/note-router');
 const folderRouter = require('./folders/folder-router');
+const HomeRouter = require('./home-router');
 
 const app = express();
 
@@ -21,8 +22,9 @@ app.use(cors());
 app.use(helmet());
 app.use(validateBearerToken);
 
-app.use(noteRouter);
-app.use(folderRouter);
+app.use(HomeRouter);
+// app.use(noteRouter);
+// app.use(folderRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

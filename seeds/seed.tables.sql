@@ -1,10 +1,10 @@
-INSERT INTO folders (name)
+INSERT INTO folders (folder_name)
 VALUES
   ('Important'),
   ('Super'),
   ('Spangley');
 
-INSERT INTO notes (name, folderId, content)
+INSERT INTO notes (note_name, folderId, content)
 VALUES
   ('Dogs', 1, 'Corporis accusamus placeat'),
   ('Cats', 3, 'Occaecati dignissimos placeat'),
