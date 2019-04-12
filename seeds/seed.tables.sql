@@ -1,11 +1,11 @@
-INSERT INTO folders (id, name)
+INSERT INTO folders (name)
 VALUES
-  (1, 'Important'),
-  (2, 'Super'),
-  (3, 'Spangley');
+  ('Important'),
+  ('Super'),
+  ('Spangley');
 
-INSERT INTO notes (id, name, folderId, content)
+INSERT INTO notes (name, folderId, content)
 VALUES
-  (1, 'Dogs', 1, 'Corporis accusamus placeat'),
-  (2, 'Cats', 3, 'Occaecati dignissimos placeat'),
-  (3, 'Birds', 2, 'Occaecati dignissimos placeat');
+  ('Dogs', 1, 'Corporis accusamus placeat'),
+  ('Cats', 3, 'Occaecati dignissimos placeat'),
+  ('Birds', 2, 'Occaecati dignissimos placeat');
