@@ -23,8 +23,8 @@ app.use(helmet());
 app.use(validateBearerToken);
 
 app.use(HomeRouter);
-// app.use(noteRouter);
-// app.use(folderRouter);
+app.use('/notes', noteRouter);
+app.use('/folders', folderRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
