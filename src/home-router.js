@@ -30,18 +30,15 @@ HomeRouter
 
 HomeRouter
   .route('/all')
-  .get((req, res, next) => {
-    NoteService.getAllNotes(req.app.get('db'))
-      .then(notes => {
-        FolderService.getAllFolders(req.app.get('db'))
-          .then(folders => {
-            notes = notes.map(serializeNote);
-            folders = folders.map(serializeFolder);
-            
-            const data = { notes, folders };
-            res.json(data);
-          });
-      });
+  .get(async (req, res, next) => {
+    let notes = await NoteService.getAllNotes(req.app.get('db'));
+    let folders = await FolderService.getAllFolders(req.app.get('db'));
+    notes = notes.map(serializeNote);
+    folders = folders.map(serializeFolder);
+
+    const data = { notes, folders };
+    res.json(data);
   });
+  
 
 module.exports = HomeRouter;
