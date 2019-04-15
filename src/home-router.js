@@ -31,15 +31,12 @@ HomeRouter
 HomeRouter
   .route('/all')
   .get(async (req, res, next) => {
-    let notes = await NoteService.getAllNotes(req.app.get('db'));
-    let folders = await FolderService.getAllFolders(req.app.get('db'));
 
-    const data = { 
-      notes: notes.map(serializeNote), 
-      folders: folders.map(serializeFolder), 
-    };
-
-    res.json(data);
+    // This is an example of code golf
+    res.json({ 
+      notes: (await NoteService.getAllNotes(req.app.get('db'))).map(serializeNote), 
+      folders: (await FolderService.getAllFolders(req.app.get('db'))).map(serializeFolder), 
+    });
   });
   
 
