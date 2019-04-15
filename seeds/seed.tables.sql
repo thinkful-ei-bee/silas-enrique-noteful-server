@@ -2,7 +2,8 @@ INSERT INTO folders (folder_name)
 VALUES
   ('Important'),
   ('Super'),
-  ('Spangley');
+  ('Spangley'),
+  ('new');
 
 INSERT INTO notes (note_name, folderId, content)
 VALUES

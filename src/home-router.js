@@ -3,6 +3,20 @@
 const express = require('express');
 const HomeService = require('./home-service');
 const HomeRouter = express.Router();
+const FolderService = require('./folders/folder-service');
+const NoteService = require('./notes/note-service');
+
+const serializeFolder = folder => ({
+  id: folder.id,
+  name: folder.folder_name,
+});
+
+const serializeNote = note => ({
+  id: note.note_id,
+  name: note.note_name,
+  folderId: note.folderid,
+  content: note.content
+});
 
 HomeRouter
   .route('/')
@@ -12,6 +26,22 @@ HomeRouter
         return res.json(data);
       })
       .catch(next);
+  });
+
+HomeRouter
+  .route('/all')
+  .get((req, res, next) => {
+    NoteService.getAllNotes(req.app.get('db'))
+      .then(notes => {
+        FolderService.getAllFolders(req.app.get('db'))
+          .then(folders => {
+            notes = notes.map(serializeNote);
+            folders = folders.map(serializeFolder);
+            
+            const data = { notes, folders };
+            res.json(data);
+          });
+      });
   });
 
 module.exports = HomeRouter;
