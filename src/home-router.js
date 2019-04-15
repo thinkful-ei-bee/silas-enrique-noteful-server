@@ -33,10 +33,12 @@ HomeRouter
   .get(async (req, res, next) => {
     let notes = await NoteService.getAllNotes(req.app.get('db'));
     let folders = await FolderService.getAllFolders(req.app.get('db'));
-    notes = notes.map(serializeNote);
-    folders = folders.map(serializeFolder);
 
-    const data = { notes, folders };
+    const data = { 
+      notes: notes.map(serializeNote), 
+      folders: folders.map(serializeFolder), 
+    };
+
     res.json(data);
   });
   
